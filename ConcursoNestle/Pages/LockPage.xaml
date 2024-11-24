@@ -20,14 +20,18 @@
 
         <!-- Botón de desbloqueo -->
         <Button Text="Desbloquear"
-                FontSize="20"
-                BackgroundColor="#0078D4"
+                FontSize="24"  
+            BackgroundColor="#0078D4"
                 TextColor="White"
-                CornerRadius="8"
-                HeightRequest="50"
-                VerticalOptions="CenterAndExpand"
+                CornerRadius="100"
+            HeightRequest="200"
+            WidthRequest="200"
+            VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
                 Clicked="OnUnlockButtonClicked"/>
     </VerticalStackLayout>
 </ContentPage>
+
+
 
 

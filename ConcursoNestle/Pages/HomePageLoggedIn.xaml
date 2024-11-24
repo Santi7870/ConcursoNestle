@@ -4,7 +4,7 @@
              x:Class="ConcursoNestle.Pages.HomePageLoggedIn"
              BackgroundColor="#FFFFFF">
 
-    <VerticalStackLayout Padding="30" Spacing="20">
+    <VerticalStackLayout Padding="30" Spacing="30">
         <!-- Título de bienvenida -->
         <Label Text="Bienvenido,"
                FontSize="24"
@@ -25,13 +25,15 @@
                TextColor="Gray"/>
 
         <!-- Botón para bloquear la aplicación -->
-        <Button Text="Bloquear Aplicación"
-                FontSize="20"
-                BackgroundColor="#0078D4"
+        <Button Text="Bloquear"
+                FontSize="24"  
+            BackgroundColor="#FF3B30"
                 TextColor="White"
-                CornerRadius="8"
-                HeightRequest="50"
-                VerticalOptions="CenterAndExpand"
+                CornerRadius="100"
+            HeightRequest="200"
+            WidthRequest="200"
+            VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
                 Clicked="OnLockButtonClicked"/>
     </VerticalStackLayout>
 </ContentPage>
