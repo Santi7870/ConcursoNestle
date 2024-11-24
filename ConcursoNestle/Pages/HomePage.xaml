@@ -1,16 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ConcursoNestle.Pages.HomePage"
-             Title="Bienvenida">
-    <VerticalStackLayout Spacing="25" Padding="30,50,30,30">
+             Title="Bienvenida"
+             BackgroundColor="#F5F5F5">
+
+    <VerticalStackLayout Spacing="30" Padding="30,50,30,30">
+        <!-- Título de bienvenida -->
         <Label Text="Bienvenido a la app Nestlé"
                FontSize="32"
-               HorizontalOptions="Center" />
+               HorizontalOptions="Center"
+               TextColor="#0078D4"
+               FontAttributes="Bold"/>
+
+        <!-- Botones de registro e inicio de sesión -->
         <Button Text="Registrarse"
-                FontSize="20"
+                FontSize="18"
+                BackgroundColor="#0078D4"
+                TextColor="White"
+                CornerRadius="8"
+                Padding="10"
+                HeightRequest="50"
                 Clicked="OnRegisterClicked"/>
+
         <Button Text="Iniciar sesión"
-                FontSize="20"
+                FontSize="18"
+                BackgroundColor="#0078D4"
+                TextColor="White"
+                CornerRadius="8"
+                Padding="10"
+                HeightRequest="50"
                 Clicked="OnLoginClicked"/>
     </VerticalStackLayout>
 </ContentPage>

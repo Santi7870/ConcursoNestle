@@ -1,12 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ConcursoNestle.Pages.HomePageLoggedIn">
-    <VerticalStackLayout>
-        <Label Text="Bienvenido" FontSize="24" HorizontalOptions="Center" />
-        <Label Text="{Binding UsuarioLogeado}" 
-               FontSize="18" HorizontalOptions="Center" />
+             x:Class="ConcursoNestle.Pages.HomePageLoggedIn"
+             BackgroundColor="#FFFFFF">
+
+    <VerticalStackLayout Padding="30" Spacing="20">
+        <!-- Título de bienvenida -->
+        <Label Text="Bienvenido,"
+               FontSize="24"
+               HorizontalOptions="Center"
+               TextColor="#0078D4"
+               FontAttributes="Bold"/>
+
+        <!-- Mostrar nombre del usuario -->
+        <Label Text="{Binding UsuarioLogeado}"
+               FontSize="18"
+               HorizontalOptions="Center"
+               TextColor="Black" />
+
+        <!-- Mostrar la hora del sistema -->
+        <Label Text="{Binding CurrentTime}"
+               FontSize="16"
+               HorizontalOptions="Center"
+               TextColor="Gray"/>
+
+        <!-- Botón para bloquear la aplicación -->
+        <Button Text="Bloquear Aplicación"
+                FontSize="20"
+                BackgroundColor="#0078D4"
+                TextColor="White"
+                CornerRadius="8"
+                HeightRequest="50"
+                VerticalOptions="CenterAndExpand"
+                Clicked="OnLockButtonClicked"/>
     </VerticalStackLayout>
 </ContentPage>
+
+
+
 
 
 

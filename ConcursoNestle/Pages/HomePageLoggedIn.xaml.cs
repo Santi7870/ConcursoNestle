@@ -1,5 +1,3 @@
-using System;
-
 namespace ConcursoNestle.Pages
 {
     public partial class HomePageLoggedIn : ContentPage
@@ -10,15 +8,27 @@ namespace ConcursoNestle.Pages
         {
             InitializeComponent();
 
-            // Obtén el nombre del usuario desde Preferences y configúralo como propiedad
             UsuarioLogeado = Preferences.Get("UsuarioLogeado", "Invitado");
-
-            // Establece el BindingContext para que la página pueda acceder a las propiedades
             BindingContext = this;
         }
-    }
 
+        // Evento que se ejecuta cuando se hace clic en el botón de bloquear
+        private async void OnLockButtonClicked(object sender, EventArgs e)
+        {
+            string userName = Preferences.Get("UsuarioLogeado", "Usuario Desconocido");
+            string time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+            // Guardamos el momento en que se bloqueó
+            Preferences.Set("BlockUser", userName);
+            Preferences.Set("BlockTime", time);
+
+            // Navegar a la pantalla de bloqueo
+            Application.Current.MainPage = new LockPage();
+        }
+    }
 }
+
+
 
 
 
