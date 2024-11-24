@@ -1,0 +1,17 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ConcursoNestle.Pages.LoginPage"
+             Title="Iniciar Sesión">
+
+    <VerticalStackLayout Spacing="20" Padding="30">
+
+        <!-- Campo de correo -->
+        <Entry x:Name="correoEntry" Placeholder="Correo" Keyboard="Email" />
+
+        <!-- Campo de clave -->
+        <Entry x:Name="claveEntry" Placeholder="Clave" IsPassword="True" />
+
+        <!-- Botón de iniciar sesión -->
+        <Button Text="Iniciar Sesión" Clicked="OnLoginClicked" BackgroundColor="#0078D4" TextColor="White" />
+    </VerticalStackLayout>
+</ContentPage>
