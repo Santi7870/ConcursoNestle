@@ -5,6 +5,7 @@ namespace ConcursoNestle.Pages
         private readonly ApiService _apiService;
 
         public string UsuarioLogeado { get; set; }
+        public string CurrentTime => DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
         public HomePageLoggedIn()
         {
@@ -12,31 +13,33 @@ namespace ConcursoNestle.Pages
 
             UsuarioLogeado = Preferences.Get("UsuarioLogeado", "Invitado");
             BindingContext = this;
+
             _apiService = new ApiService();
         }
 
-        // Evento que se ejecuta cuando se hace clic en el botón de bloquear
         private async void OnLockButtonClicked(object sender, EventArgs e)
         {
-            // Obtener el nombre completo del usuario desde las preferencias
             var nombreEstudiante = Preferences.Get("UsuarioLogeado", null);
 
-            // Verificar si el nombre no es nulo o vacío
             if (string.IsNullOrEmpty(nombreEstudiante))
             {
                 await DisplayAlert("Error", "No se pudo obtener el nombre del estudiante.", "OK");
                 return;
             }
 
-            // Llamar al servicio para registrar el bloqueo con el nombre del estudiante
-            var exito = await _apiService.RegistrarBloqueoDesbloqueo(nombreEstudiante, true); // true para bloqueo
+            // Guardar la hora actual en las preferencias como la hora de bloqueo
+            string currentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            Preferences.Set("BlockTime", currentTime);
+            Preferences.Set("BlockUser", nombreEstudiante);
+
+            // Registrar el bloqueo en el servidor
+            var exito = await _apiService.RegistrarBloqueoDesbloqueo(nombreEstudiante, true);
 
             if (exito)
             {
-                await DisplayAlert("Bloqueo", "La aplicación ha sido bloqueada.", "OK");
-
-                // Navegar a la página de bloqueo
-                await Navigation.PushAsync(new LockPage());
+                await DisplayAlert("Bloqueo", $"La aplicación ha sido bloqueada a las {currentTime}.", "OK");
+                // Navegar a la página de LockPage
+                Application.Current.MainPage = new LockPage();
             }
             else
             {
@@ -45,6 +48,7 @@ namespace ConcursoNestle.Pages
         }
     }
 }
+
 
 
 

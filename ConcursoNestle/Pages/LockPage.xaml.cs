@@ -7,8 +7,6 @@ namespace ConcursoNestle.Pages
     {
         private readonly ApiService _apiService;
 
-        public string BlockInfo { get; set; }
-
         public LockPage()
         {
             InitializeComponent();
@@ -17,36 +15,27 @@ namespace ConcursoNestle.Pages
 
             // Obtener información de bloqueo de las preferencias
             string blockUser = Preferences.Get("BlockUser", "Usuario Desconocido");
-            string blockTime = Preferences.Get("BlockTime", "Fecha desconocida");
+            string blockTime = Preferences.Get("BlockTime", "Hora desconocida");
 
-            // Formatear la hora y fecha de bloqueo para que se muestren correctamente
-            BlockInfo = $"Usuario que bloqueó: {blockUser}\nHora de bloqueo: {blockTime}";
-
-            // Establecer el contexto de enlace para que el XAML pueda acceder a la propiedad
-            BindingContext = this;
+            // Mostrar la información en las etiquetas
+            BlockedUserLabel.Text = $"Usuario que bloqueó: {blockUser}";
+            BlockedTimeLabel.Text = $"Hora de bloqueo: {blockTime}";
         }
 
-        // Evento que se ejecuta cuando se hace clic en el botón de desbloquear
         private async void OnUnlockButtonClicked(object sender, EventArgs e)
         {
             string userName = Preferences.Get("UsuarioLogeado", "Usuario Desconocido");
             string unlockTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-            // Guardamos el momento en que se desbloqueó localmente
             Preferences.Set("UnlockUser", userName);
             Preferences.Set("UnlockTime", unlockTime);
 
-            // Enviar los datos del desbloqueo al servidor
-            var success = await _apiService.RegistrarBloqueoDesbloqueo(userName, false); // `false` indica desbloqueo
+            // Registrar el desbloqueo en el servidor
+            var success = await _apiService.RegistrarBloqueoDesbloqueo(userName, false);
 
             if (success)
             {
-                // Mostrar la información de desbloqueo
-                await DisplayAlert("Desbloqueo",
-                                   $"Usuario que desbloqueó: {userName}\nHora de desbloqueo: {unlockTime}",
-                                   "OK");
-
-                // Volver a la pantalla principal después de desbloquear
+                await DisplayAlert("Desbloqueo", $"Desbloqueado por: {userName}\nHora: {unlockTime}", "OK");
                 Application.Current.MainPage = new HomePageLoggedIn();
             }
             else
@@ -56,6 +45,7 @@ namespace ConcursoNestle.Pages
         }
     }
 }
+
 
 
 

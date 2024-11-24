@@ -12,25 +12,33 @@
                TextColor="#FF3B30"
                FontAttributes="Bold"/>
 
-        <!-- Información sobre el bloqueo -->
-        <Label Text="{Binding BlockInfo}"
+        <!-- Mostrar el nombre del usuario que bloqueó -->
+        <Label x:Name="BlockedUserLabel"
                FontSize="18"
                HorizontalOptions="Center"
                TextColor="Black"/>
 
+        <!-- Mostrar la hora y fecha de bloqueo -->
+        <Label x:Name="BlockedTimeLabel"
+               FontSize="18"
+               HorizontalOptions="Center"
+               TextColor="Gray"/>
+
         <!-- Botón de desbloqueo -->
         <Button Text="Desbloquear"
                 FontSize="24"  
-            BackgroundColor="#0078D4"
+                BackgroundColor="#0078D4"
                 TextColor="White"
                 CornerRadius="100"
-            HeightRequest="200"
-            WidthRequest="200"
-            VerticalOptions="CenterAndExpand"
+                HeightRequest="200"
+                WidthRequest="200"
+                VerticalOptions="CenterAndExpand"
                 HorizontalOptions="Center"
                 Clicked="OnUnlockButtonClicked"/>
     </VerticalStackLayout>
 </ContentPage>
+
+
 
 
 
